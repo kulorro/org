@@ -126,7 +126,7 @@ Gnews是一个免费、无广告，提供原创内容、信息交流、 **情报
 Gnews本为 **传播真相** 而生，它正在向着自己的目标而去。Gnews积分系统和GPT，仅仅是整个路程刚刚开始的一个里程碑，加入Gnews，一起来实现 **传播真相** 、 **守护言论自由** 的使命。  
 
 
-# Footnotes
+# 脚注
 
 <sup><a id="fn.1" href="#fnr.1">1</a></sup> [About Us](https://gnews.org/about/About)
 
