@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-02-06 Mon 22:32 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content" class="content">
+<p>
+应该鼓励用户哪些行为，拒绝哪些行为？如何对用户进行激励？<br />
+鼓励作者提供优质的原创内容，鼓励读者积极参与讨论并发表更有价值的评论（点赞、转发、收藏）。拒绝作者提供低质量内容，拒绝读者低价值、无意义、影响观感的“水军”行为。<br />
+共产/公社模型不可行，直接的市场模型也不可行，必须根据用户贡献进行奖励。如果某用户的行为得到其他用户的广泛认可，那么该行为至少具有阶段性贡献。用户得到的认可越多（声望越高），表明其对社区的贡献越大，得到的奖励应该越多。所以，可以发行一种流通通证，根据用户的声望进行奖励——声望高者奖励多。<br />
+</p>
+
+<p>
+如何定义声望？<br />
+声望代表用户对社区的贡献，由其他用户对该用户的认可（点赞、评论、转发、收藏、关注等）决定：<br />
+</p>
+<ol class="org-ol">
+<li>如果用户得到广泛的认可（被大量用户关注，文章被大量点赞、收藏、转发，评论被大量点赞、回复），那么该用户的声望应该比较高。</li>
+<li>如果用户得到平台“大V”的认可，那么该用户的声望也比较高。</li>
+<li>如果用户得到平台“大V”的唯一关注，（相比作为被该“大V”关注的用户之一，）声望要更高。</li>
+</ol>
+
+<p>
+如何计算声望？<br />
+假设声望通过用户之间的认可进行传递(1,2)，并且用户的认可所传递的声望值，与他对外所做认可的行为总量（出量）有关，出度越大，每次认可所传递的声望就越少(3)。<br />
+根据假设，如果用户\(i\)被其他用户认可（关注、点赞、转发等），则该用户的声望<br />
+</p>
+\begin{equation}
+P(i)=\sum P(j)\frac{r(i,j)}{o(j)}
+\end{equation}
+<p>
+其中，\(r(i,j)\)为用户\(j\)对用户\(i\)的认可度，\(o(j)\)为用户\(j\)的对外总认可度。认可度根据用户的认可行为计算，不同的认可行为提供不同的认可度。例如：点赞提供1认可度，评论或回复提供10认可度等。<br />
+声望初值如何确定？是否会影响收敛结果？<br />
+</p>
+
+<p>
+为什么声望值不通过认可行为永久交付？认可行为可撤销，当认可行为撤销时，用户向被认可用户传递的这部分声望应该“回收”。同时，声望的传递应该具有永续性——当我的声望高了，被我认可的用户声望也应该水涨船高。因为在我的主页可以看到所有被我认可的内容和用户，所以声望的传递应该是持续的。并且声望需要有自然衰减机制，保证声望永远表示最近时期的用户贡献，保证奖励发放“不重不遗”。并且永久交付还需要解决声望通证的一系列，社区的总声望是固定的，还是变化的？固定的就是加直接的零和模型，很可能导致用户的认可行为大大减少。变化的就需要解决发行问题——什么情况下，社区可以发行声望？<br />
+</p>
+
+<p>
+声望通过用户之间的认可传递的依据是什么？认可行为会为被认可用户的声望背书，换言之，因为“大V”的声望高，，受“大V”认可的用户，在一定程度上也会因此受到其他用户的（非直接）认可。因此，认可的行为可以传递声望。<br />
+</p>
+
+<p>
+不活跃的用户声望会逐渐降低，合理吗？一个用户曾经对社区贡献很大，声望很高，但随着时间的推移，声望逐渐下降，这会导致老用户的流失吗？<br />
+合理。声望不是对贡献的奖励，而是对贡献的认定。社区根据声望阶段性地进行奖励，对于曾经有过大贡献，获得高声望的用户，已经在当下就获得了奖励。也就是说，即使某用户不活跃了，他的声望下降了，也不会影响他获得应有的奖励。声望应该是一个动态的量，它总表示最近一段时间用户的贡献。所以只有持续不断地提供贡献，才能维持或提高声望。这非常符合现实——爱因斯坦为科学作出了非常大的贡献，他的贡献已经在过去就得到了认可和奖励，在当时他也因此获得了很大的声望，但今天我们不会说他声望高。我们会说郭文贵先生具有很高的声望，因为他在灭共、建立NFSC、发动爆料革命、创立G系列等事情中作出了极大的贡献。所以，声望表示的最近或长或短的一段时期用户的贡献，而过去的贡献为该用户带来的声望，会随着时间衰减，衰减的速率取决于新贡献爆发的速率和过去贡献的持续性。如果一个用户的贡献是阶段性的，那么当下他的声望可能很高，但随着时间推移，如果他没有其他贡献，声望自然逐渐衰减。如果一个用户的贡献具有持久性，里程碑意义，那么即使他的活跃度逐渐下降，没有其他贡献，只要还收益于他的贡献，许多用户还是会保持对他的认可，所以虽然他的声望会衰减，但下降的速率会更慢。甚至会出现另一种情况，就是一个很有价值的贡献，在当下并没有得到广泛的认可，该用户的声望也没有提高，但过了一段时间，大家逐渐关注并认可该用户的贡献后，他的声望也就随之变高。这意味着，即使一个用户的贡献在当下没有得到认可和奖励，也可能随着时间推移，在其他时期获得相应的认可和奖励。这是对此类贡献的补偿机制。<br />
+除了经济奖励（分发流通通证）外，还可以设置荣誉奖励。<br />
+</p>
+
+<p>
+没有获得和不给予其他用户认可的用户<br />
+能获得一定程度的认可，并且很少认可其他用户的用户很可能会聚集优势，如果他以某种方式“出售”自己的认可度，会造成严重后果吗？<br />
+因有些原因没有获得足够的认可的用户，其声望可能比“同流合污”的“水军”低吗？<br />
+是否应该以某种机制减缓优势的聚集和流失（过度倾斜形成垄断）？<br />
+</p>
+
+<p>
+声望的计算是否应该用户对其他用户的否定（不认可）是否应该纳入声望的计算？如果考虑否定行为，它是否会武器化，用于降低他人的声望？如果否定行为不纳入声望的计算，用户的声望是否会与其实际贡献出现较大偏差？<br />
+</p>
+
+<p>
+如果没有新的用户贡献被认可，声望的分布是否应该随着时间的流逝在用户之间逐渐平均？<br />
+</p>
+
+<p>
+新用户如何进入声望系统？<br />
+如何不使开通新账户、多开账户的行为得到声望激励？<br />
+</p>
+
+<p>
+如何发行流通通证？如何根据声望分发奖励？<br />
+</p>
+
+<p>
+如何激励那些没有得到广泛关注和认可的贡献？用户对社区的贡献越大，越有可能得到广泛的认可，声望就越高。所以，用户声望就越大，表明他的行为和提供的内容越受认可，表明他对社区的贡献越大。反之不亦然。有可能存在一些有贡献的内容和行为并不能得到广泛的关注和认可，对于提供这类内容和行为的用户，我们希望仍然可以给他们奖励，以对他们形成激励。<br />
+</p>
+
+<p>
+此设计的优点在哪里？缺点是什么？<br />
+</p>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2023-02-06 Mon 22:32</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
