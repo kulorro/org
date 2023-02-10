@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-02-10 Fri 21:10 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gnews改进提案———基于声望的激励机制，旨在奖励平台的贡献者(draft)</title>
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Gnews改进提案———基于声望的激励机制，旨在奖励平台的贡献者(draft)</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org72dc05f">1. 导言</a></li>
+<li><a href="#org9978ea8">2. 1 动议</a>
+<ul>
+<li><a href="#orge043cb0">2.1. 1.1 声望的定义与计算</a></li>
+<li><a href="#orgd66884b">2.2. 1.2 奖励的发行与分配</a></li>
+<li><a href="#org8a227d2">2.3. 1.3 防止无意义的用户行为得到奖励</a></li>
+</ul>
+</li>
+<li><a href="#orgb1c48c2">3. 2 概括方案背后的构思</a></li>
+<li><a href="#org049f7c7">4. 公社模型的问题</a></li>
+<li><a href="#orga85d684">5. 市场模型的问题</a></li>
+<li><a href="#org00e8c06">6. 用户将选择哪些行为</a></li>
+<li><a href="#org9697b20">7. 比固定奖励更好的秩序</a></li>
+<li><a href="#orga100d5c">8. 笺注</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org72dc05f" class="outline-2">
+<h2 id="org72dc05f"><span class="section-number-2">1.</span> 导言</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+声望通证(prestige token)
+应该鼓励用户哪些行为，拒绝哪些行为？如何对用户进行激励？<br />
+鼓励作者提供优质的原创内容，鼓励读者积极参与讨论并发表更有价值的评论（点赞、转发、收藏）。拒绝作者提供低质量内容，拒绝读者低价值、无意义、影响观感的“水军”行为。<br />
+共产/公社模型不可行，直接的市场模型也不可行，必须根据用户贡献进行奖励。如果某用户的行为得到其他用户的广泛认可，那么该行为至少具有阶段性贡献。用户得到的认可越多（声望越高），表明其对社区的贡献越大，得到的奖励应该越多。所以，可以发行一种流通通证，根据用户的声望进行奖励——声望高者奖励多。
+</p>
+</div>
+</div>
+<div id="outline-container-org9978ea8" class="outline-2">
+<h2 id="org9978ea8"><span class="section-number-2">2.</span> 1 动议</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+我想为Gnews团队提供如下建议，并借此文深入探讨激励机制的新方案：<br />
+<br />
+Gnews应该抛弃现阶段基于用户行为发放奖励的激励机制，采用基于用户获得的声望发放奖励的新机制：声望随着用户之间的互相认可发生“转移”，只有对平台和社群有价值、有贡献的行为，才能得到用户广泛关注和认可，声望才能维持或提高。所以，声望可以表示一个用户对平台和社群的贡献。基于声望发放奖励（声望高者奖励多）可以实现对贡献者的激励，同时不使低价值、无意义的行为得到奖励。
+</p>
+</div>
+<div id="outline-container-orge043cb0" class="outline-3">
+<h3 id="orge043cb0"><span class="section-number-3">2.1.</span> 1.1 声望的定义与计算</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+声望代表用户对社区的贡献，由其他用户对该用户的认可（点赞、评论、转发、收藏、关注等）决定：
+</p>
+<ul class="org-ul">
+<li>如果用户得到广泛的认可（被大量用户关注，文章被大量点赞、收藏、转发，评论被大量点赞、回复），那么该用户的声望应该比较高。</li>
+<li>如果用户得到平台“声望大V”的认可，那么该用户的声望也比较高。</li>
+<li>如果用户得到平台“声望大V”的唯一关注，相比作为被该“大V”关注的用户之一，该用户的声望要更高。</li>
+</ul>
+<p>
+<br />
+假设声望通过用户之间的认可进行传递，并且用户的认可所传递的声望值，与他对外所做认可总量有关，认可总量越大，每次认可所传递的声望就越少。<br />
+根据假设，如果用户\(i\)被其他用户认可（关注、点赞、转发等），则该用户的声望
+</p>
+\begin{equation} P(i)=\sum P(j)\frac{r(i,j)}{o(j)},    i,j \in [1,N] \end{equation}
+<p>
+其中，\(r(i,j)\)为用户\(j\)对用户\(i\)的认可度，\(o(j)=\sum r(i,j)\)为用户\(j\)的对外总认可度。认可度根据用户的认可行为计算，不同的认可行为提供不同的认可度。例如：点赞提供1认可度，评论或回复提供10认可度，以此类推。而用户对自己的认可行为不会传递声望，即\(r(i,i)\equiv 0\)。\(N\)为总用户数。<br />
+<br />
+方程中所有用户的声望\(P(i)\)可以写成列向量：\(P=\left( \begin{array}{c} P(1) \\ P(2) \\ \vdots \\ P(N) \end{array} \right)\)，所有系数\(\frac{r(i,j)}{o(j)}\)可以写成矩阵：\(R=\left( \begin{array}{cccc}  \frac{r(1,1)}{o(1)} & \frac{r(1,2)}{o(2)} & \cdots & \frac{r(1,N)}{o(N)} \\ \frac{r(2,1)}{o(1)} & \frac{r(2,2)}{o(2)} & \cdots & \frac{r(2,N)}{o(N)} \\ \vdots & \vdots & \ddots & \vdots \\ \frac{r(N,1)}{o(1)} & \frac{r(N,2)}{o(2)} & \cdots & \frac{r(N,N)}{o(N)}  \end{array} \right)\)，方程可以写成：
+</p>
+\begin{equation}
+P=RP
+\end{equation}
+<p>
+令所有用户的声望初始值均为\(1\)，采用迭代法求解方程：
+</p>
+\begin{equation}
+P_{n+1}=RP_n
+\end{equation}
+<p>
+其中，\(P_0=(1,1,\cdots,1)^\intercal\). 经过\(m\)次迭代后，\(P_m(i)\)即表示用户\(i\)当前的声望。<br />
+<br />
+由于矩阵\(R\)会随着用户的活动而变化，所以需要周期性地以用户当前的声望作为初始值继续迭代：
+</p>
+\begin{equation}
+P_{m+1}=R_kP_m
+\end{equation}
+<p>
+其中\(R_k\)为变化后的矩阵。<br />
+同时，为了使用户看到的声望值更加直观，迭代结束后需要对结果进行乘数扩大，保证\(||P||=N\)，即用户声望的平均值保持为\(1\). 对于刚进入平台的新用户，他们的初始声望为\(0\)。<br />
+<br />
+为了后续讨论的方便，暂且将Gnews声望通证称为GPT，即Gnews Prestige Token。
+</p>
+</div>
+</div>
+<div id="outline-container-orgd66884b" class="outline-3">
+<h3 id="orgd66884b"><span class="section-number-3">2.2.</span> 1.2 奖励的发行与分配</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Gnews团队可以发行一种在平台内部流通的通证，并以此通证平台贡献者的奖励（姑且称发行的通证为GNC - Gnews Coin，其通证经济模型将在后文讨论）。Gnews团队可以根据情况，在认为合适时间增发GNC，并将新发行的GNC大部分作为用户奖励，剩余部分则作为Gnews团队的收益。<br />
+使用即价值！？？？？？？？？？？？？？？
+</p>
+</div>
+</div>
+<div id="outline-container-org8a227d2" class="outline-3">
+<h3 id="org8a227d2"><span class="section-number-3">2.3.</span> 1.3 防止无意义的用户行为得到奖励</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+上述建议的优点在于，它能防止用户通过无意义、无价值、不被认可的“水军”行为获得奖励，因而既能减少Gnews平台中低质量、影响观感的用行为，又能激励高质量、有价值的用户行为。所以，基于声望分发奖励比基于用户行为分发奖励要更加利于平台和用户社群的发展。<br />
+上述方案的意图在于，只要某用户试图采用不被认可的行为牟取奖励，就注定失败。不过，只要该用户及时停止胡作非为，为平台和社群提供更多有价值的贡献，他也能够获得相应的奖励。<br />
+上述方案可以很好地适配Gnews平台的功能，但会引出一系列需要充分讨论的问题，不过问题的最终结论是，上述方案可以很好地解决现阶段的困难，并且没有引入任何明显的漏洞。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb1c48c2" class="outline-2">
+<h2 id="orgb1c48c2"><span class="section-number-2">3.</span> 2 概括方案背后的构思</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+直接奖励用户行为的模式存在严重漏洞——相同的行为可以有不同的价值、贡献，如果采用固定奖励机制，就会导致用户都倾向于“刷”奖励，水军行为。
+</p>
+</div>
+</div>
+<div id="outline-container-org049f7c7" class="outline-2">
+<h2 id="org049f7c7"><span class="section-number-2">4.</span> 公社模型的问题</h2>
+</div>
+<div id="outline-container-orga85d684" class="outline-2">
+<h2 id="orga85d684"><span class="section-number-2">5.</span> 市场模型的问题</h2>
+</div>
+<div id="outline-container-org00e8c06" class="outline-2">
+<h2 id="org00e8c06"><span class="section-number-2">6.</span> 用户将选择哪些行为</h2>
+</div>
+<div id="outline-container-org9697b20" class="outline-2">
+<h2 id="org9697b20"><span class="section-number-2">7.</span> 比固定奖励更好的秩序</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+根据行为分配奖励vs根据贡献分配奖励vs根据市场分配奖励vs&#x2026;<br />
+PoW vs PoC(Proof of Contribution) vs Po?<br />
+使用即价值如何解读？<br />
+</p>
+
+
+
+
+
+<p>
+创建之初，每个用户账号的声望应该相同。只要满足所有用户的声望初值是相同的，就不会影响迭代结果。<br />
+声望总量是否固定？<br />
+迭代过程中总量很可能不固定。因为存在“单向”用户（只接受认可而不认可其他用户，或只认可其他用户而没有得到认可）和“僵尸”用户（没有认可其他用户，也没有得到其他用户的认可），迭代过程中，不对外认可的用户，无论是否受到认可，赋予他的声望总是在下一次迭代中“丢失”。以至于经过多次迭代后，用户声望总量一定会下降。<br />
+声望的“丢失”有什么影响吗？<br />
+不影响本质。在微观尺度（单个用户的角度），声望是表征该用户对生态的贡献（由其他用户的认可从社区网络的层面
+用户的声望是否存在上下限？<br />
+</p>
+
+<p>
+声望在宏观层面表征同时期用户贡献的分布，它可以决定现阶段奖励的分配。但声望表征的是贡献的横向分布，无法表征贡献的纵向分布，那么对于这种情况——某用户的贡献在同时期的社区中平平无奇，但仍然大于历史上的某些“大V”——在创造力爆发的时期，该用户在现阶段的声望很可能低于历史上“大V”当时的声望。换言之，该用户分配到的奖励占比，会低于历史上的“大V”曾经得到奖励的占比，这是否会造成不公平？这里的问题是——声望永远是现阶段用户贡献的分布（即贡献的横向分布），不能表征贡献的纵向分布，这是否导致不同时期相同价值的贡献被分配到不同价值的奖励？<br />
+这个问题不是通过声望解决的，引入声望机制就是解决贡献的横向分布的问题，纵向分布纳入奖励的分配机制中解决。简言之，每个阶段发放的奖励并不是固定、相同的，而是根据当前阶段整个生态的发展确定的。在创造力爆发的时期，用户贡献的总价值高，发放奖励的总价值也相应高，这保证了高价值的贡献总能获得更高的奖励。<br />
+</p>
+
+<p>
+模型的直接效果有哪些？<br />
+自己的声望只来源于其他用户的认可，激励创作者提供更受认可的内容，激励读者发布更受认可的评论（包括点赞、转发等行为）。同时，由于不能得到其他用户的认可，“水军”行为和低质量创作不会带来任何声望的增长，也就实现了对此类行为的拒绝，防止用户“灌水”。<br />
+声望会呈现“自发衰减”的趋势。<br />
+</p>
+
+<p>
+声望通过用户之间的认可传递的依据是什么？认可行为会为被认可用户的声望背书，换言之，因为“大V”的声望高，，受“大V”认可的用户，在一定程度上也会因此受到其他用户的（非直接）认可。因此，认可的行为可以传递声望。<br />
+</p>
+
+<p>
+为什么声望值不通过认可行为一次性转移、永久交付？声望的传递应该具有永续性——当我的声望高了，被我认可的用户声望也应该水涨船高。因为在我的主页可以看到所有被我认可的内容和用户，所以声望的传递应该是持续的。同时，认可行为可撤销，当认可行为撤销时，用户向被认可用户传递的这部分声望应该“回收”。并且声望需要有自然衰减机制，保证声望永远表示最近时期的用户贡献，保证奖励发放“不重不遗”。并且永久交付还需要解决声望通证的一系列，社区的总声望是固定的，还是变化的？固定的就是加直接的零和模型，很可能导致用户的认可行为大大减少。变化的就需要解决发行问题——什么情况下平台可以发行声望？一次性转移的模型还会造成负面影响——用户之间的认可行为紧缩。因为这是一个零和模型，用户对外的认可多，自己的声望就少，进而导致得到的奖励也少，所以会导致用户倾向于不对其他用户的进行认可。<br />
+</p>
+
+<p>
+声望是否可以转账、支付和交易？<br />
+不可以。声望是用户对社区的贡献的计量，本质上不是一种通货，所以声望的拥有者不能通过转账、支付和交易行为将声望转移给其他用户。声望的转移只能通过用户之间的认可，但根据声望给予用户的经济奖励和授予用户的荣誉（勋章），则可以在用户之间流通。<br />
+一个现实例子——诺贝尔奖。诺贝尔奖得主的荣誉、名头，是类似声望的通证，表示诺贝尔奖对得主贡献的认可，可以一定程度反映得主的贡献，它无法通过转账、支付和交易等经济行为在不同人之间转移，永远属于该奖得主。而授予诺贝尔奖得主的奖章（荣誉勋章）和给予他的奖金（经济奖励），则可以进行支付、交易等行为。<br />
+</p>
+
+<p>
+由于其他用户的认可并不能给自己增加声望，“水军”行为不能给自己带来任何“收益”，所以用户不会倾向于“过度”地行动。然而，用户是否会为了不增加其他用户的声望，而倾向于不对其他人的行为进行认可，最终导致用户在平台上的认可行为紧缩？<br />
+每个用户的声望均被其他用户“瓜分”，只要他对其他用户有过任何认可。<br />
+</p>
+
+<p>
+不活跃的用户声望会逐渐降低，合理吗？<br />
+合理。声望不是对贡献的奖励，而是对贡献的认定。声望是一个动态的量，它总表示最近一段时间用户的贡献。所以只有持续不断地提供贡献，才能维持或提高声望。<br />
+这非常符合现实——爱因斯坦为科学作出了非常大的贡献，他的贡献已经在过去就得到了认可和奖励，在当时他也因此获得了很大的声望，但今天我们不会说他声望高。我们会说郭文贵先生具有很高的声望，因为他为灭共、建立NFSC、发动爆料革命、创立G系列做出了极大的贡献。所以，声望表示的最近或长或短的一段时期用户的贡献，而过去的贡献为该用户带来的声望，会随着时间衰减，衰减的速率取决于新贡献爆发的速率和过去贡献的持续性。如果一个用户的贡献是阶段性的，那么当下他的声望可能很高，但随着时间推移，如果他没有其他贡献，声望自然逐渐衰减。如果一个用户的贡献具有持久性，里程碑意义，那么即使他的活跃度逐渐下降，没有持续的贡献，许多用户还是会保持对他的认可，所以他的声望会衰减得更慢。同时，如果社区的创造力被充分释放，越来越多有价值的贡献陆续爆发，那么通体而言，不活跃用户的声望下降会更快。<br />
+</p>
+
+<p>
+一个用户曾经对社区贡献很大，声望很高，但随着时间的推移，声望逐渐下降，这对该用户公平吗？<br />
+社区根据声望阶段性地进行奖励，对于曾经有过大贡献，获得高声望的用户，已经在当下就获得了奖励。也就是说，即使某用户不活跃了，他的声望下降了，也不会影响他获得应有的奖励。而且，既然奖励是根据声望阶段性地发放的，那么声望就应该具有“自发衰减”的特点，以保证它总是能比较合理地表示现阶段用户的贡献，否则就会对过去的贡献反复进行奖励，这对后继贡献者不公平。<br />
+</p>
+
+<p>
+还需要注意一种情况——一个很有价值的贡献，在当下并没有得到广泛的认可，该用户的声望也没有提高，但过了一段时间，大家逐渐关注并认可该用户的贡献后，他的声望也就随之变高。这意味着，即使一个用户的贡献在当下没有得到认可和奖励，也可能随着时间推移，在其他时期获得相应的认可和奖励。这是对此类贡献的补偿机制。<br />
+除了经济奖励（分发流通通证）外，还可以设置荣誉奖励。<br />
+如果对于一直没有得到广泛关注和认可的贡献，很可能该用户始终不能得到奖励，这有可能导致隐藏的创造力逐渐流失。如何设计一种机制，用于这种贡献的激励？<br />
+</p>
+
+<p>
+如果一个用户从不认可他人，那么声望最终会向他聚集吗？<br />
+能获得一定程度的认可，并且很少认可其他用户的用户很可能会聚集优势，如果他以某种方式“出售”自己的认可（类似广告），会造成严重后果吗？出于某些原因没有获得足够的认可的用户，其声望一可能比“同流合污”的“水军”还低吗？是否应该设计某种机制，以减缓优势的聚集和流失，防止声望过度倾斜，垄断奖励？<br />
+当用户声望高的时候，并且对外总认可度\(o(i)\)较低时，他就可以以类似广告的方式“出售”自己的认可度，以帮助买家提高声望。声望高而对外总认可度低的用户，可以在获得平台奖励之后，出售他的认可以获取利益。那么这些用户有多大的动机这样做？这样的行为可能对社区造成哪些影响？<br />
+“高进低出”的用户出售认可度的行为，对自己的声望会有直接和间接的影响——首先自己的认可。
+</p>
+
+<p>
+声望的计算是否应该用户对其他用户的否定（不认可）是否应该纳入声望的计算？如果考虑否定行为，它是否会武器化，用于降低他人的声望？如果否定行为不纳入声望的计算，用户的声望是否会与其实际贡献出现较大偏差？<br />
+</p>
+
+<p>
+如果没有新的用户贡献被认可，声望的分布是否应该随着时间的流逝在用户之间逐渐平均？如果曾经存在一批“大V”，因他们的贡献获得非常高的声望，并且得到奖励。随着时间推移，这群“大V”逐渐“泯然众人”，那么在这个过程中，他的可以得到的奖励也应该逐渐与众人持平，即使用户之间的认可没有太大的变化。否则，声望将不能体现近期的贡献，而曾经的贡献将会持续获得奖励。<br />
+</p>
+
+<p>
+新用户如何进入声望系统/体系？老用户创建多个账户的行为是否会得到声望激励？<br />
+</p>
+
+<p>
+如何使新用户开通账号的行为得到声望激励，而用户多开账户的行为无法得到声望激励？<br />
+</p>
+
+<p>
+如何发行流通通证？如何根据声望分发奖励？<br />
+</p>
+
+<p>
+如何激励那些没有得到广泛关注和认可的贡献？用户对社区的贡献越大，越有可能得到广泛的认可，声望就越高。所以，用户声望就越大，表明他的行为和提供的内容越受认可，表明他对社区的贡献越大。反之不亦然。有可能存在一些有贡献的内容和行为并不能得到广泛的关注和认可，对于提供这类内容和行为的用户，我们希望仍然可以给他们奖励，以对他们形成激励。<br />
+</p>
+
+<p>
+此设计的优点在哪里？缺点是什么？<br />
+</p>
+
+<p>
+机制是否激励孤立的“小群体”成员用户之间“同流合污”、“抱团取暖”的行为？<br />
+同流合污的行为很可能存在。只要一个小群体保持相互认可，而不对群体外的成员进行认可，即使没有其他成员认可他们，他们每人的声望也可以保持在初值附近。相比之下，主流群体则因为声望计算过程中的“丢失”效应，群体总声望会下降。这就会导致小群体即使什么贡献都没有，也能拿到奖励，甚至会分走不低的奖励。换言之，这种效应将导致小群体同流合污，或者一个用户注册大量账号以瓜分奖励的行为。<br />
+如果能设计某种机制，排除个人或小群体利用该效应作恶的可能，这种效应还会造成什么客观的影响？<br />
+这个效应有可能导致声望体系存在多个相互孤立的子体系，子体系内的用户互相认可，但不对外给予认可，子体系外用户也不认可他们。在相互孤立的子体系内，还有可能存在若干个近似孤立的次体系——两个次体系之间的大部分成员是不同的，只存在少数跨次体系的成员。<br />
+对于孤立体系而言，声望将是<br />
+声望的“丢失”效应将鼓励用户至少保持对其他用户贡献最低程度的关注和认可，以避免声望计算的迭代过程中，自己声望被“浪费”，进而影响自己的最终“声望”。<br />
+如何防止利用“丢失”效应作恶（小群体”同流合污“和用户多开账号“混”声望等“寄生”行为）？<br />
+用户需要为自己的声望和行为负责——完全不对他人进行认可，声望就会在迭代的过程中“丢失”，这在体系内并不会对自己造成损失，但如果另有一个孤立体系，拥有更加健康的网络拓扑，则会造成自己的损失。过于随意地认可其他用户，会导致声望流向低贡献用户的趋势变大，这会直接损害自己的奖励。这也是该系统促进协作的重要一环——用户要认真处理自己的认可权，否则会直接损害自己和生态的利益。<br />
+简单粗暴地只向主流用户群体发放奖励，而不考虑主流用户群体外的在体系，显然是不可接受的解决方案。相互独立的在体系，声望分别计算，奖励单独发放，本质上也没有解决困难（存在寄生型次体系）。而且奖励必须不能独立计算，否则就会导致用户倾向于不认可其他用户。一旦如此，自己所在的子空间的声望就会发生“丢失”，进而自己在整个网络声望分布中占比下降。所以，用户必须将自己的声望传递给其他用户。只要用户不得不将自己的声望传递给其他用户，他就必须非常认真谨慎地进行认可。一旦认可过于集中于一部分用户，优势就会向他们聚集，反之，一部分奖励可能被低贡献甚至无贡献的用户瓜分。没必要将声望模型再复杂化，而是引入治理模型。<br />
+治理模型包括两个部分——自动化/智能算法和人为干预。自动化算法承担“免疫系统/机制”的作用，人为干预承担“医学干预/介入”的角色。前者负责监控和清除，后者负责处理超出前者监控和清除能力的问题。<br />
+“寄生”用户的行为就如癌症一样，毫无贡献，却能得到奖励。如果这是“癌症”，那就应该诉诸“免疫系统”进行监控和清除，在发生“免疫逃逸”后，就需要诉诸“医学干预”。所以首先需要引入治理模型，加入“免疫系统”的设计，尽可能将诉诸“医学干预”的比例降到最低，再考虑将哪些情况归于“医学干预”。<br />
+“监控”功能：认可矩阵可以化简为块对角矩阵，由此可以快速定位所有声望子体系。当子体系的认可矩阵出现某些特征时，就可以启动清除验证。<br />
+寄生用户的行为会导致认可矩阵呈现哪些特征？<br />
+清除功能：当“预警”发出，就进入验证，可以设置某些条件，满足即可直接清除用户本阶段的声望。<br />
+对于不满足清楚条件的“可疑”子体系，则发出“预警”。<br />
+“免疫系统”是通过某种抗原识别并清除体内的有害细胞的，所以可以考虑训练AI，通过识别某种“抗原”进行监控和清除。还可以模仿“免疫系统”的获得性免疫功能。<br />
+AI可以与“免疫算法”相结合——免疫算法辅助AI训练，AI协助免疫算法工作。免疫算法属于自动化、被动治理的机制，AI可以补充自动化、主动治理，类似免疫系统的免疫细胞，共同构成“免疫系统”。<br />
+同时还可以设计机制，让免疫算法和免疫AI根据网络情况释放“因子”，“因子”可以提示网络存在的问题，而团队可以进行人工干预、排查。<br />
+免疫系统和医疗检查是持续发展的，而非“一劳永逸”。正如人类对抗疾病，总会有新的疾病产生，医学总要持续发展。<br />
+团队开放声望系统的API，允许所有的用户自由使用平台用户声望数据，用于分析、创作等。这使所有用户可以协作，防止其他用户作恶，或优化生态的声望环境。<br />
+</p>
+
+<p>
+防止利用声望“丢失”和“初值”机制作恶——新用户初值为0+声望累积迭代。
+</p>
+
+
+<p>
+声望“零和”问题——促进协作还是抗争？<br />
+微观的合作和竞争是存在的，但整体网络倾向协作而非抗争。<br />
+用户素质将成为最终要的必要条件之一。机制的设计已经提供了最大程度的..，但如果用户的心智幼稚，不能协作，或是协作能力不足，都有可能造成问题。<br />
+用户的利益与网络的利益相同。<br />
+</p>
+
+<p>
+从网络拓扑的角度讨论该模型。<br />
+</p>
+
+<p>
+是否实现了不激励“水军”行为的目的？<br />
+</p>
+
+<p>
+是否实现了激励..行为的目的？<br />
+部分实现了。目前可能存在一种效应，使完全躺平、不为平台提供贡献的用户也能获得奖励。换言之，对“雄心勃勃”的用户可以构成良好激励，而对于“咸鱼”用户，则无法构成激励。甚至有些用户勤勤恳恳，认可为其他用户的贡献<br />
+</p>
+
+<p>
+将贡献计算与奖励、流通性质切割，由另外一种独立发行的通证承担流通的功能，作为奖励。<br />
+</p>
+
+<p>
+声望表征用户受其他用户的认可程度，奖励根据声望方法，本质就是奖励得到用户广泛关注和认可的行为。<br />
+补充逆主流的激励机制。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orga100d5c" class="outline-2">
+<h2 id="orga100d5c"><span class="section-number-2">8.</span> 笺注</h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2023-02-10 Fri 21:10</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
