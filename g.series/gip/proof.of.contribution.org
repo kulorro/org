@@ -169,6 +169,3 @@ Gnews现阶段的激励机制是根据用户的行为给予奖励，有能力注
 
 协议：\\
 [[https://creativecommons.org/licenses/by/4.0/][CC BY 4.0]]\\
-\\
-联系方式：\\
-澈澈澈#1106(Didscord), @ydche3(Gettr/Gnews).
