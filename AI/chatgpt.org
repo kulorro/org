@@ -1,0 +1,3 @@
+* TODO 整理chatgpt笔记
+* chatgpt模型原理
+* 
